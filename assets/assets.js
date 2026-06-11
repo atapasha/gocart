@@ -12,10 +12,17 @@ import product_img5 from "./product_img5.png"
 import product_img6 from "./product_img6.png"
 import product_img7 from "./product_img7.png"
 import product_img8 from "./product_img8.png"
-import product_img9 from "./product_img9.png"
+import product_img9  from "./product_img9.png"
 import product_img10 from "./product_img10.png"
 import product_img11 from "./product_img11.png"
 import product_img12 from "./product_img12.png"
+
+import product_img200 from "./product_img200.jpg"
+import product_img201 from "./product_img201.jpg"
+import product_img202 from "./product_img202.jpg"
+
+
+
 import { ClockFadingIcon, HeadsetIcon, SendIcon } from "lucide-react";
 import profile_pic1 from "./profile_pic1.jpg"
 import profile_pic2 from "./profile_pic2.jpg"
@@ -62,6 +69,165 @@ export const dummyStoreData = {
 }
 
 export const productDummyData = [
+
+
+
+
+
+    {
+    id: "prod_13",
+    name: "ERKEK TERLIK SIYAH",
+    description: "Comfortable men's slippers",
+    mrp: 35,
+    price: 25,
+    images: [product_img200, product_img201, product_img202],
+    category: "terlik",
+    gender: "men",
+    storeId: "seller_1",
+    inStock: true,
+    store: dummyStoreData,
+    rating: dummyRatingsData,
+},
+
+    {
+    id: "prod_1123",
+    name: "ERKEK TERLIK SIYAH",
+    description: "Comfortable men's slippers",
+    mrp: 325,
+    price: 252,
+    images: [product_img11],
+    category: "terlik",
+    gender: "men",
+    storeId: "seller_1",
+    inStock: true,
+    store: dummyStoreData,
+    rating: dummyRatingsData,
+},
+{
+    id: "prod_14",
+    name: "ERKEK TSHIRT BEYAZ",
+    description: "Classic men's t-shirt",
+    mrp: 45,
+    price: 30,
+    images: [product_img2],
+    category: "tshirt",
+    gender: "men",
+    storeId: "seller_1",
+    inStock: true,
+    store: dummyStoreData,
+    rating: dummyRatingsData,
+},
+
+{
+    id: "prod_15",
+    name: "ERKEK PANTALON",
+    description: "Men's casual pants",
+    mrp: 80,
+    price: 55,
+    images: [product_img3],
+    category: "pantalon",
+    gender: "men",
+    storeId: "seller_1",
+    inStock: true,
+    store: dummyStoreData,
+    rating: dummyRatingsData,
+},
+
+{
+    id: "prod_16",
+    name: "KADIN JEAN PANTALON",
+    description: "Women's jean pants",
+    mrp: 90,
+    price: 65,
+    images: [product_img4],
+    category: "kadin-jean-pantalon",
+    gender: "women",
+    storeId: "seller_1",
+    inStock: true,
+    store: dummyStoreData,
+    rating: dummyRatingsData,
+},
+
+{
+    id: "prod_17",
+    name: "KADIN ELBISE",
+    description: "Elegant women's dress",
+    mrp: 120,
+    price: 85,
+    images: [product_img5],
+    category: "kadin-elbise",
+    gender: "women",
+    storeId: "seller_1",
+    inStock: true,
+    store: dummyStoreData,
+    rating: dummyRatingsData,
+},
+
+{
+    id: "prod_18",
+    name: "KADIN KROP",
+    description: "Women's crop top",
+    mrp: 50,
+    price: 35,
+    images: [product_img6],
+    category: "kadin-krop",
+    gender: "women",
+    storeId: "seller_1",
+    inStock: true,
+    store: dummyStoreData,
+    rating: dummyRatingsData,
+},
+
+{
+    id: "prod_19",
+    name: "KOLYE ALTIN",
+    description: "Gold necklace accessory",
+    mrp: 70,
+    price: 45,
+    images: [product_img7],
+    category: "kolye",
+    gender: "accessories",
+    storeId: "seller_1",
+    inStock: true,
+    store: dummyStoreData,
+    rating: dummyRatingsData,
+},
+
+{
+    id: "prod_20",
+    name: "KUPE SILVER",
+    description: "Silver earrings",
+    mrp: 40,
+    price: 25,
+    images: [product_img8],
+    category: "kupe",
+    gender: "accessories",
+    storeId: "seller_1",
+    inStock: true,
+    store: dummyStoreData,
+    rating: dummyRatingsData,
+},
+
+{
+    id: "prod_21",
+    name: "BILEKLIK",
+    description: "Fashion bracelet",
+    mrp: 35,
+    price: 20,
+    images: [product_img9],
+    category: "bileklik",
+    gender: "accessories",
+    storeId: "seller_1",
+    inStock: true,
+    store: dummyStoreData,
+    rating: dummyRatingsData,
+},
+
+
+
+
+
+
     {
         id: "prod_1",
         name: "Modern table lamp",
