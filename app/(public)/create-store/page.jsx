@@ -39,7 +39,7 @@ export default function CreateStore() {
 
     const token = await getToken();
     try {
-      const { data } = await axios.get("/api/store/create", formData, {
+      const { data } = await axios.get("/api/store/create", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -83,7 +83,6 @@ export default function CreateStore() {
     try {
       const token = await getToken();
       const formData = new FormData();
-
       formData.append("name", storeInfo.name);
       formData.append("description", storeInfo.description);
       formData.append("username", storeInfo.username);
