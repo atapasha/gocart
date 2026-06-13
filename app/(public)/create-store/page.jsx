@@ -104,7 +104,6 @@ export default function CreateStore() {
     if(user){
       fetchSellerStatus()
     }
-    fetchSellerStatus();
   }, [user]);
 
   if (!user) {
