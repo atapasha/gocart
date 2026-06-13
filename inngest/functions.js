@@ -14,7 +14,7 @@ export const syncUserCreation = inngest.createFunction(
       data: {
         id: data.id,
         email: data.email_addresses[0].email_address,
-        name: `${data.first_name} ${data.last_name}`.trim(),
+        name: `${data.first_name || ""} ${data.last_name || ""}`.trim(),
         image: data.image_url,
       },
     });
@@ -34,7 +34,7 @@ export const syncUserUpdation = inngest.createFunction(
       where: { id: data.id },
       data: {
         email: data.email_addresses[0].email_address,
-        name: `${data.first_name} ${data.last_name}`.trim(),
+        name: `${data.first_name || ""} ${data.last_name || ""}`.trim(),
         image: data.image_url,
       },
     });

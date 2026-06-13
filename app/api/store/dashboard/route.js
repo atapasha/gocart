@@ -15,8 +15,8 @@ const orders=await prisma.order.findMany({where:{storeId}})
 const products=await prisma.products.findMany({where:{storeId}})
  
 const ratings = await prisma.rating.findMany({
-    where: { productId: product.id },
-    include: { product: true } // یا هر اینکلودی که برای دسترسی به محصول نیاز داری
+    where: { productId:{in:products.map(product.id )} },
+    include: { user:true,product: true } // یا هر اینکلودی که برای دسترسی به محصول نیاز داری
 })
 
 const dashboardData = {
