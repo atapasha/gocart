@@ -1,12 +1,13 @@
 'use client'
 import { assets } from "@/assets/assets"
+import { useAuth } from "@clerk/nextjs"
+import axios from "axios"
 import Image from "next/image"
 import { useState } from "react"
 import { toast } from "react-hot-toast"
-
 export default function StoreAddProduct() {
 
-    const categories = ['Electronics', 'Clothing', 'Home & Kitchen', 'Beauty & Health', 'Toys & Games', 'Sports & Outdoors', 'Books & Media', 'Food & Drink', 'Hobbies & Crafts', 'Others']
+    const categories = ['Electronics', 'Clothing', 'Home & Kitchen', 'Beauty & Health', 'Toys & Games', 'Sports & Outdoors', 'ERKEK TERLIK', 'Food & Drink', 'Hobbies & Crafts', 'Others']
 
     const [images, setImages] = useState({ 1: null, 2: null, 3: null, 4: null })
     const [productInfo, setProductInfo] = useState({
@@ -18,18 +19,57 @@ export default function StoreAddProduct() {
     })
     const [loading, setLoading] = useState(false)
 
+    const {getToken}=useAuth()
 
-    const onChangeHandler = (e) => {
-        setProductInfo({ ...productInfo, [e.target.name]: e.target.value })
+   
+
+
+const onChangeHandler = (e) => {
+    setProductInfo({ ...productInfo, [e.target.name]: e.target.value })
+}
+
+const onSubmitHandler = async (e) => {
+    e.preventDefault()
+    try {
+        // if no images are uploaded then return
+        if(!images[1] && !images[2] && !images[3] && !images[4]){
+            return toast.error('Please upload at least one image')
+        }
+        setLoading(true)
+
+const formData = new FormData()
+formData.append('name', productInfo.name)
+formData.append('description', productInfo.description)
+formData.append('mrp', productInfo.mrp)
+formData.append('price', productInfo.price)
+formData.append('category', productInfo.category)
+
+ // Adding Images to FormData
+Object.keys(images).forEach((key)=>{
+    images[key] && formData.append('images', images[key])
+})
+
+const token = await getToken()
+const { data } = await axios.post('/api/store/product', formData, {
+headers: { Authorization: `Bearer ${token}` }})
+toast.success(data.message)
+
+setProductInfo({
+    name: "",
+    description: "",
+    mrp: 0,
+    price: 0,
+    category: "",
+})
+// reset images
+setImages({ 1: null, 2: null, 3: null, 4: null })
+
+} catch (error) {
+        toast.error(error?.response?.data?.error || error.message)
+    } finally {
+        setLoading(false)
     }
-
-    const onSubmitHandler = async (e) => {
-        e.preventDefault()
-        // Logic to add a product
-        
-    }
-
-
+}
     return (
         <form onSubmit={e => toast.promise(onSubmitHandler(e), { loading: "Adding Product..." })} className="text-slate-500 mb-28">
             <h1 className="text-2xl">Add New <span className="text-slate-800 font-medium">Products</span></h1>
