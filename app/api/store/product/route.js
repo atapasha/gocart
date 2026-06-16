@@ -20,7 +20,6 @@ export async function POST(request) {
       );
     }
 
-    // Get Form Data
     const formData = await request.formData();
 
     const name = formData.get("name");
@@ -28,6 +27,15 @@ export async function POST(request) {
     const mrp = Number(formData.get("mrp"));
     const price = Number(formData.get("price"));
     const category = formData.get("category");
+
+    const sizes = JSON.parse(
+      formData.get("sizes") || "[]"
+    );
+
+    const colors = JSON.parse(
+      formData.get("colors") || "[]"
+    );
+
     const images = formData.getAll("images");
 
     if (
@@ -44,10 +52,11 @@ export async function POST(request) {
       );
     }
 
-    // Upload Images To ImageKit
     const imageUrls = await Promise.all(
       images.map(async (image) => {
-        const buffer = Buffer.from(await image.arrayBuffer());
+        const buffer = Buffer.from(
+          await image.arrayBuffer()
+        );
 
         const response = await imagekit.upload({
           file: buffer,
@@ -66,21 +75,24 @@ export async function POST(request) {
       })
     );
 
-    // Create Product
-    await prisma.product.create({
+    const product = await prisma.product.create({
       data: {
         name,
         description,
         mrp,
         price,
         category,
+        sizes,
+        colors,
         images: imageUrls,
         storeId,
       },
     });
 
     return NextResponse.json({
+      success: true,
       message: "Product added successfully",
+      product,
     });
   } catch (error) {
     console.error(error);
@@ -111,13 +123,18 @@ export async function GET(request) {
     }
 
     const products = await prisma.product.findMany({
-      where: { storeId },
+      where: {
+        storeId,
+      },
       orderBy: {
         createdAt: "desc",
       },
     });
 
-    return NextResponse.json({ products });
+    return NextResponse.json({
+      success: true,
+      products,
+    });
   } catch (error) {
     console.error(error);
 

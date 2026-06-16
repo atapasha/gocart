@@ -16,42 +16,42 @@ const Navbar = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    router.push(`/shop?search=${search}`);
+    router.push(`/shop/category/?search=${search}`);
   };
-  const categories = {
-    women: [
-      { name: "KADIN JEAN PANTALON", slug: "kadin-jean-pantalon" },
-      { name: "KADIN JEAN TULUM", slug: "kadin-jean-tulum" },
-      { name: "KADIN JEAN TAKIM", slug: "kadin-jean-takim" },
-      { name: "KADIN TAKIM", slug: "kadin-takim" },
-      { name: "KADIN ELBISE", slug: "kadin-elbise" },
-      { name: "KADIN KROP", slug: "kadin-krop" },
-      { name: "SAPKA", slug: "sapka" },
-      { name: "ALT GIYIM", slug: "alt-giyim" },
-      { name: "UST GIYIM", slug: "ust-giyim" },
-    ],
+const categories = {
+  women: [
+    { name: "Kadın Jean Pantolon", slug: "kadin-jean-pantalon" },
+    { name: "Kadın Jean Tulum", slug: "kadin-jean-tulum" },
+    { name: "Kadın Jean Takım", slug: "kadin-jean-takim" },
+    { name: "Kadın Takım", slug: "kadin-takim" },
+    { name: "Kadın Elbise", slug: "kadin-elbise" },
+    { name: "Kadın Crop", slug: "kadin-krop" },
+    { name: "Şapka", slug: "sapka" },
+    { name: "Alt Giyim", slug: "alt-giyim" },
+    { name: "Üst Giyim", slug: "ust-giyim" },
+  ],
 
-    men: [
-      { name: "ERKEK TERLIK", slug: "terlik" },
-      { name: "ERKEK DENIZ SHORTU", slug: "deniz-sortu" },
-      { name: "ERKEK SHORT", slug: "short" },
-      { name: "ERKEK BOXER / CORAP", slug: "boxer-corap" },
-      { name: "ERKEK TSHIRT", slug: "tshirt" },
-      { name: "ERKEK PANTALON", slug: "pantalon" },
-      { name: "ERKEK ESOFMAN", slug: "esofman" },
-      { name: "SAPKA", slug: "sapka" },
-      { name: "ATLET", slug: "atlet" },
-    ],
+  men: [
+    { name: "Erkek Terlik", slug: "erkek-terlik" },
+    { name: "Erkek Deniz Şortu", slug: "deniz-sortu" },
+    { name: "Erkek Şort", slug: "short" },
+    { name: "Erkek Boxer / Çorap", slug: "boxer-corap" },
+    { name: "Erkek Tişört", slug: "tshirt" },
+    { name: "Erkek Pantolon", slug: "pantalon" },
+    { name: "Erkek Eşofman", slug: "esofman" },
+    { name: "Şapka", slug: "sapka" },
+    { name: "Atlet", slug: "atlet" },
+  ],
 
-    accessories: [
-      { name: "KOLYE", slug: "kolye" },
-      { name: "KUPE", slug: "kupe" },
-      { name: "BILEKLIK", slug: "bileklik" },
-      { name: "PABAND", slug: "paband" },
-      { name: "SET GARDANBAND VE DASTBAND", slug: "set-gardanband-dastband" },
-      { name: "ARAGHGIR", slug: "araghgir" },
-    ],
-  };
+  accessories: [
+    { name: "Kolye", slug: "kolye" },
+    { name: "Küpe", slug: "kupe" },
+    { name: "Bileklik", slug: "bileklik" },
+    { name: "Pa Bandı", slug: "paband" },
+    { name: "Gerdanlık ve Bileklik Seti", slug: "set-gardanband-dastband" },
+    { name: "Ter Bandı", slug: "araghgir" },
+  ],
+};
 
   return (
     <nav className="relative bg-white">
@@ -70,28 +70,29 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Menu */}
+
+ 
           <div className="hidden sm:flex items-center gap-4 lg:gap-8 text-slate-600">
-            <Link href="/">Home</Link>
-            <div className="relative group">
+<Link href="/">Ana Sayfa</Link>            <div className="relative group">
               <Link
                 href="/shop"
                 className="font-medium text-slate-700 hover:text-green-600 transition-all duration-300"
               >
-                Shop
+                Mağaza
               </Link>
 
               <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 grid grid-cols-3 gap-16 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.15)] rounded-3xl p-10 min-w-[950px] border border-slate-100 z-50">
                 {/* Women */}
                 <div>
                   <h3 className="uppercase tracking-[3px] text-xs font-bold text-pink-500 mb-5 pb-3 border-b border-pink-100">
-                    Women
+                    Kadın
                   </h3>
 
                   <div className="flex flex-col gap-2">
                     {categories.women.map((item) => (
                       <Link
                         key={item.slug}
-                        href={`/shop/category/women/${item.slug}`}
+                        href={`/shop/category/${item.slug}`}
                         className="text-sm py-1 text-slate-600 hover:text-pink-500 hover:translate-x-2 transition-all duration-300"
                       >
                         {item.name}
@@ -103,14 +104,14 @@ const Navbar = () => {
                 {/* Men */}
                 <div>
                   <h3 className="uppercase tracking-[3px] text-xs font-bold text-blue-500 mb-5 pb-3 border-b border-blue-100">
-                    Men
+                    Erkek
                   </h3>
 
                   <div className="flex flex-col gap-2">
                     {categories.men.map((item) => (
                       <Link
                         key={item.slug}
-                        href={`/shop/category/men/${item.slug}`}
+                        href={`/shop/category/${item.slug}`}
                         className="text-sm py-1 text-slate-600 hover:text-blue-500 hover:translate-x-2 transition-all duration-300"
                       >
                         {item.name}
@@ -122,8 +123,7 @@ const Navbar = () => {
                 {/* Accessories */}
                 <div>
                   <h3 className="uppercase tracking-[3px] text-xs font-bold text-purple-500 mb-5 pb-3 border-b border-purple-100">
-                    Accessories
-                  </h3>
+Aksesuarlar                  </h3>
 
                   <div className="flex flex-col gap-2">
                     {categories.accessories.map((item) => (
@@ -139,8 +139,8 @@ const Navbar = () => {
                 </div>
               </div>
             </div>{" "}
-            <Link href="/">About</Link>
-            <Link href="/">Contact</Link>
+            <Link href="/">Hakkımızda</Link>
+            <Link href="/">İletişim</Link> 
             <form
               onSubmit={handleSearch}
               className="hidden xl:flex items-center w-xs text-sm gap-2 bg-slate-100 px-4 py-3 rounded-full"
@@ -160,7 +160,7 @@ const Navbar = () => {
               className="relative flex items-center gap-2 text-slate-600"
             >
               <ShoppingCart size={18} />
-              Cart
+              Sepet
               <button className="absolute -top-1 left-3 text-[8px] text-white bg-slate-600 size-3.5 rounded-full">
                 {cartCount}
               </button>
@@ -170,7 +170,7 @@ const Navbar = () => {
                 onClick={openSignIn}
                 className="px-8 py-2 bg-indigo-500 hover:bg-indigo-600 transition text-white rounded-full"
               >
-                Login
+                Giriş Yap
               </button>
             ) : (
               <div className="flex items-center gap-4">
@@ -178,7 +178,7 @@ const Navbar = () => {
                   href="/orders"
                   className="text-slate-600 hover:text-green-600 transition"
                 >
-                  Orders
+                  Siparişlerim
                 </Link>
 
                 <UserButton />

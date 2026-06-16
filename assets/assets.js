@@ -28,11 +28,18 @@ import profile_pic1 from "./profile_pic1.jpg"
 import profile_pic2 from "./profile_pic2.jpg"
 import profile_pic3 from "./profile_pic3.jpg"
 
+
+import  slider_1 from "./slider_1.jpg"
+import  slider_2 from "./slider_2.jpg"
+import  slider_3 from "./slider_3.jpg"
+import  slider_4 from "./slider_4.jpg"
+import  slider_5 from "./slider_5.jpg"
 export const assets = {
     upload_area, hero_model_img,
     hero_product_img1, hero_product_img2, gs_logo,
     product_img1, product_img2, product_img3, product_img4, product_img5, product_img6,
     product_img7, product_img8, product_img9, product_img10, product_img11, product_img12,
+    slider_1,slider_2,slider_3,slider_4,slider_5
 }
 
 export const categories = ["Headphones", "Speakers", "Watch", "Earbuds", "Mouse", "Decoration"];
@@ -411,9 +418,24 @@ export const productDummyData = [
 ];
 
 export const ourSpecsData = [
-    { title: "Free Shipping", description: "Enjoy fast, free delivery on every order no conditions, just reliable doorstep.", icon: SendIcon, accent: '#c4c7cc' },
-    { title: "7 Days easy Return", description: "Change your mind? No worries. Return any item within 7 days.", icon: ClockFadingIcon, accent: '#c4c7cc' },
-    { title: "24/7 Customer Support", description: "We're here for you. Get expert help with our customer support.", icon: HeadsetIcon, accent: '#c4c7cc' }
+ {
+  title: "Ücretsiz Kargo",
+  description: "Her siparişte hızlı ve ücretsiz teslimatın keyfini çıkarın. Ek şart yok, sadece güvenilir teslimat.",
+  icon: SendIcon,
+  accent: "#c4c7cc"
+},
+{
+  title: "7 Gün Kolay İade",
+  description: "Fikrinizi mi değiştirdiniz? Sorun değil. Ürünlerinizi 7 gün içinde kolayca iade edebilirsiniz.",
+  icon: ClockFadingIcon,
+  accent: "#c4c7cc"
+},
+{
+  title: "7/24 Müşteri Desteği",
+  description: "Her zaman yanınızdayız. Müşteri destek ekibimizden hızlı ve profesyonel yardım alın.",
+  icon: HeadsetIcon,
+  accent: "#c4c7cc"
+}
 ]
 
 export const addressDummyData = {

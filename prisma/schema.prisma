@@ -33,6 +33,8 @@ model Product {
     price       Float
     images      String[]
     category    String
+    sizes       String[] @default([])
+    colors      String[] @default([])
     inStock     Boolean  @default(true)
     storeId     String
     createdAt   DateTime @default(now())
