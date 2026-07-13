@@ -62,7 +62,7 @@ const categories = {
             className="relative text-4xl font-semibold text-slate-700"
           >
 <span className="bg-gray-200 px-3 py-1 rounded-md font-bold text-gray-800">
-  7stylefashion
+  Honey Maral
 </span>            <span className="text-green-600 text-5xl leading-0">.</span>
             <p className="absolute text-xs font-semibold -top-1 -right-8 px-3 p-0.5 rounded-full flex items-center gap-2 text-white bg-green-500">
               plus
@@ -73,12 +73,12 @@ const categories = {
 
  
           <div className="hidden sm:flex items-center gap-4 lg:gap-8 text-slate-600">
-<Link href="/">Ana Sayfa</Link>            <div className="relative group">
+<Link href="/">خانه</Link>            <div className="relative group">
               <Link
                 href="/shop"
                 className="font-medium text-slate-700 hover:text-green-600 transition-all duration-300"
               >
-                Mağaza
+                فروشگاه 
               </Link>
 
               <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 grid grid-cols-3 gap-16 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.15)] rounded-3xl p-10 min-w-[950px] border border-slate-100 z-50">
@@ -139,8 +139,8 @@ Aksesuarlar                  </h3>
                 </div>
               </div>
             </div>{" "}
-            <Link href="/">Hakkımızda</Link>
-            <Link href="/">İletişim</Link> 
+            <Link href="/">درباره ما</Link>
+            <Link href="/">تماس با ما</Link> 
             <form
               onSubmit={handleSearch}
               className="hidden xl:flex items-center w-xs text-sm gap-2 bg-slate-100 px-4 py-3 rounded-full"
@@ -160,7 +160,7 @@ Aksesuarlar                  </h3>
               className="relative flex items-center gap-2 text-slate-600"
             >
               <ShoppingCart size={18} />
-              Sepet
+              خرید
               <button className="absolute -top-1 left-3 text-[8px] text-white bg-slate-600 size-3.5 rounded-full">
                 {cartCount}
               </button>
@@ -169,16 +169,14 @@ Aksesuarlar                  </h3>
               <button
                 onClick={openSignIn}
                 className="px-8 py-2 bg-indigo-500 hover:bg-indigo-600 transition text-white rounded-full"
-              >
-                Giriş Yap
-              </button>
+              >ورود              </button>
             ) : (
               <div className="flex items-center gap-4">
                 <Link
                   href="/orders"
                   className="text-slate-600 hover:text-green-600 transition"
                 >
-                  Siparişlerim
+                  سفارش ها
                 </Link>
 
                 <UserButton />
@@ -219,7 +217,7 @@ Aksesuarlar                  </h3>
                 onClick={openSignIn}
                 className="px-7 py-1.5 bg-indigo-500 hover:bg-indigo-600 text-sm transition text-white rounded-full"
               >
-                Login
+                وارد شوید
               </button>
             )}
           </div>
