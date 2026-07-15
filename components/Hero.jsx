@@ -14,14 +14,15 @@ import "swiper/css";
 const Hero = () => {
   const sliderImages = [
     assets.slider_1,
-   
   ];
 
-  const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || "$";
+  const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || "تومان";
 
   return (
-    <div className="mx-6">
-      <div className="flex max-xl:flex-col gap-8 max-w-7xl mx-auto my-10">
+    <div dir="rtl">
+
+      <div className="flex flex-col xl:flex-row gap-5">
+
         {/* LEFT HERO */}
         <div
           className="relative flex-1 bg-green-200 rounded-3xl overflow-hidden"
@@ -29,6 +30,7 @@ const Hero = () => {
             minHeight: "550px",
           }}
         >
+
           {/* CONTENT */}
           <div
             style={{
@@ -38,6 +40,7 @@ const Hero = () => {
               maxWidth: "600px",
             }}
           >
+
             <div
               style={{
                 display: "inline-flex",
@@ -50,6 +53,7 @@ const Hero = () => {
                 fontSize: "14px",
               }}
             >
+
               <span
                 style={{
                   background: "#4B5563",
@@ -59,13 +63,15 @@ const Hero = () => {
                   fontSize: "12px",
                 }}
               >
-                NEWS
+                جدید
               </span>
 
-              50$ ve Üzeri Siparişlerde Ücretsiz Kargo!
+              خرید بالای ۵۰۰ هزار تومان، ارسال رایگان دارد!
 
               <ChevronRightIcon size={16} />
+
             </div>
+
 
             <h2
               style={{
@@ -81,9 +87,14 @@ const Hero = () => {
                 color: "transparent",
               }}
             >
-              Açılışa özel kayıt olun<br /> %25 indirim <br />kazanın
-              
+             با خرید بالای 500 هزارتومن به مناسبت  افتتاحیه   
+              <br />
+              ۲۵٪ تخفیف
+              <br />
+              دریافت کنید
+
             </h2>
+
 
             <div
               style={{
@@ -92,7 +103,11 @@ const Hero = () => {
                 fontWeight: "500",
               }}
             >
-              <p>Starts from</p>
+
+              <p>
+                شروع قیمت از
+              </p>
+
 
               <p
                 style={{
@@ -102,7 +117,9 @@ const Hero = () => {
               >
                 {currency}4.90
               </p>
+
             </div>
+
 
             <button
               style={{
@@ -116,21 +133,25 @@ const Hero = () => {
                 fontSize: "15px",
               }}
             >
-              Daha Fazla Bilgi
+              مشاهده بیشتر
             </button>
+
           </div>
+
+
 
           {/* SLIDER */}
           <div
             style={{
               position: "absolute",
-              right: "0",
+              left: "0",
               bottom: "0",
               width: "45%",
               height: "100%",
               overflow: "hidden",
             }}
           >
+
             <Swiper
               modules={[Autoplay]}
               slidesPerView={1}
@@ -144,8 +165,11 @@ const Hero = () => {
                 height: "100%",
               }}
             >
+
               {sliderImages.map((img, index) => (
+
                 <SwiperSlide key={index}>
+
                   <div
                     style={{
                       position: "relative",
@@ -153,6 +177,7 @@ const Hero = () => {
                       height: "100%",
                     }}
                   >
+
                     <Image
                       src={img}
                       alt={`slide-${index}`}
@@ -163,15 +188,26 @@ const Hero = () => {
                         objectPosition: "bottom center",
                       }}
                     />
+
                   </div>
+
                 </SwiperSlide>
+
               ))}
+
             </Swiper>
+
           </div>
+
+
         </div>
+
+
 
         {/* RIGHT CARDS */}
         <div className="flex flex-col md:flex-row xl:flex-col gap-5 w-full xl:max-w-sm">
+
+
           <div
             style={{
               background: "#FED7AA",
@@ -183,7 +219,9 @@ const Hero = () => {
               minHeight: "180px",
             }}
           >
+
             <div>
+
               <h3
                 style={{
                   fontSize: "32px",
@@ -192,8 +230,9 @@ const Hero = () => {
                   marginBottom: "20px",
                 }}
               >
-                En Popüler Ürünler
+                محبوب‌ترین محصولات
               </h3>
+
 
               <div
                 style={{
@@ -202,10 +241,12 @@ const Hero = () => {
                   gap: "8px",
                 }}
               >
-                Daha Fazla Bilgi
+                مشاهده بیشتر
                 <ArrowRightIcon size={18} />
               </div>
+
             </div>
+
 
             <Image
               src={assets.hero_product_img1}
@@ -213,7 +254,11 @@ const Hero = () => {
               width={140}
               height={140}
             />
+
           </div>
+
+
+
 
           <div
             style={{
@@ -226,7 +271,9 @@ const Hero = () => {
               minHeight: "180px",
             }}
           >
+
             <div>
+
               <h3
                 style={{
                   fontSize: "32px",
@@ -235,7 +282,9 @@ const Hero = () => {
                   marginBottom: "20px",
                 }}
               >
-En iyi fiyatlar               </h3>
+                بهترین قیمت‌ها
+              </h3>
+
 
               <div
                 style={{
@@ -244,10 +293,12 @@ En iyi fiyatlar               </h3>
                   gap: "8px",
                 }}
               >
-                Daha Fazla Bilgi
+                مشاهده بیشتر
                 <ArrowRightIcon size={18} />
               </div>
+
             </div>
+
 
             <Image
               src={assets.hero_product_img2}
@@ -255,11 +306,17 @@ En iyi fiyatlar               </h3>
               width={140}
               height={140}
             />
+
           </div>
+
+
         </div>
+
       </div>
 
+
       <CategoriesMarquee />
+
     </div>
   );
 };
