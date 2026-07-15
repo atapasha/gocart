@@ -14,10 +14,7 @@ import "swiper/css";
 const Hero = () => {
   const sliderImages = [
     assets.slider_1,
-    assets.slider_2,
-    assets.slider_3,
-    assets.slider_4,
-    assets.slider_5,
+   
   ];
 
   const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || "$";
