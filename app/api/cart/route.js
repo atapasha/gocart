@@ -29,7 +29,7 @@ export async function GET(request){
       where: {id: userId}
     })
 
-    return NextResponse.json({ cart: user.cart })
+    return NextResponse.json({ cart: user?.cart })
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: error.message }, { status: 400 })

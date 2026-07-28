@@ -5,9 +5,10 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-import { useUser, useClerk, UserButton } from "@clerk/nextjs";
+import { useUser, useClerk, UserButton ,isLoaded } from "@clerk/nextjs";
 const Navbar = () => {
   const { user } = useUser();
+  console.log("useeeeeeeeeeeeeeeeer",user)
   const { openSignIn } = useClerk();
   const router = useRouter();
 
