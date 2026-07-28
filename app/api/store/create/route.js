@@ -6,6 +6,7 @@ import prisma from "@/lib/prisma";
 export async function POST(request) {
   try {
     const { userId } = getAuth(request);
+    console.log("useridddddddddddddddd",userId)
     // Get the data from the form
     const formData = await request.formData();
 
@@ -43,7 +44,6 @@ export async function POST(request) {
       return NextResponse.json({ status: store.status });
     }
 
-    // check is username is already taken
     // check is username is already taken
     const isUsernameTaken = await prisma.store.findFirst({
       where: { username: username.toLowerCase() },

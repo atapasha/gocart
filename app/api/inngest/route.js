@@ -5,7 +5,7 @@ import {
   syncUserCreation,
   syncUserUpdation,
   syncUserDeletion,
- } from "../../../inngest/functions";
+} from "../../../inngest/functions";
 
 
 export const { GET, POST, PUT } = serve({
@@ -14,5 +14,5 @@ export const { GET, POST, PUT } = serve({
     syncUserCreation,
     syncUserUpdation,
     syncUserDeletion,
-   ],
+  ],
 });
