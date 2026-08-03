@@ -280,7 +280,7 @@ export default function StoreAddProduct() {
         <label className="flex flex-col gap-2">
           Offer Price (تومان)
           <input
-            type="number"
+            type="number" 
             name="price"
             value={productInfo.price}
             onChange={onChangeHandler}
