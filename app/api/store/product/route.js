@@ -51,7 +51,7 @@ export async function POST(request) {
         { status: 400 }
       );
     }
-
+//upload the images on imgkit
     const imageUrls = await Promise.all(
       images.map(async (image) => {
         const buffer = Buffer.from(

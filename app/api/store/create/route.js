@@ -1,13 +1,44 @@
-import imagekit from "@/config/imageKit";
-import { getAuth } from "@clerk/nextjs/server";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-// create the store
+import imagekit from "@/config/imageKit";
+
+// 1. ایجاد فروشگاه (POST)
 export async function POST(request) {
   try {
-    const { userId } = getAuth(request);
-    console.log("useridddddddddddddddd",userId)
-    // Get the data from the form
+    // دریافت شناسه کاربر از Clerk
+    const { userId } = await auth();
+
+    if (!userId) {
+      return NextResponse.json(
+        { error: "کاربر وارد نشده است" },
+        { status: 401 }
+      );
+    }
+
+    // بررسی وجود کاربر در دیتابیس (در صورت عدم وجود، ایجاد کاربر کامل)
+    let user = await prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    if (!user) {
+      const clerkUser = await currentUser();
+
+      const name = `${clerkUser?.firstName || ""} ${clerkUser?.lastName || ""}`.trim() || "User";
+      const email = clerkUser?.emailAddresses[0]?.emailAddress || "";
+      const image = clerkUser?.imageUrl || "";
+
+      user = await prisma.user.create({
+        data: {
+          id: userId,
+          name: name,
+          email: email,
+          image: image,
+        },
+      });
+    }
+
+    // دریافت داده‌های فرم
     const formData = await request.formData();
 
     const name = formData.get("name");
@@ -28,41 +59,40 @@ export async function POST(request) {
       !image
     ) {
       return NextResponse.json(
-        { error: "missing storee info" },
-        { status: 400 },
+        { error: "اطلاعات فروشگاه کامل نیست" },
+        { status: 400 }
       );
     }
 
-    //check
-    // check is user have already registered a store
-    const store = await prisma.store.findFirst({
-      where: { userId: userId },
+    // بررسی ثبت فروشگاه قبلی
+    const existingStore = await prisma.store.findFirst({
+      where: { userId },
     });
 
-    // if store is already registered then send status of store
-    if (store) {
-      return NextResponse.json({ status: store.status });
+    if (existingStore) {
+      return NextResponse.json({ status: existingStore.status });
     }
 
-    // check is username is already taken
+    // بررسی تکراری نبودن نام کاربری
     const isUsernameTaken = await prisma.store.findFirst({
       where: { username: username.toLowerCase() },
     });
 
     if (isUsernameTaken) {
       return NextResponse.json(
-        { error: "username already taken" },
-        { status: 400 },
+        { error: "این نام کاربری قبلاً انتخاب شده است" },
+        { status: 400 }
       );
     }
 
-    //image upload to image
+    // آپلود تصویر لوگو در ImageKit
     const buffer = Buffer.from(await image.arrayBuffer());
     const response = await imagekit.upload({
       file: buffer,
       fileName: image.name,
       folder: "logos",
     });
+
     const optimizedImage = imagekit.url({
       path: response.filePath,
       transformation: [
@@ -72,7 +102,8 @@ export async function POST(request) {
       ],
     });
 
-    const newStore = await prisma.store.create({
+    // ساخت فروشگاه در دیتابیس
+    await prisma.store.create({
       data: {
         userId,
         name,
@@ -85,41 +116,36 @@ export async function POST(request) {
       },
     });
 
-    // link store to user
-    await prisma.user.update({
-      where: { id: userId },
-      data: { store: { connect: { id: newStore.id } } },
-    });
-    return NextResponse.json({ message: "applied, waiting for approval" });
+    return NextResponse.json({ message: "درخواست ثبت فروشگاه ارسال شد" });
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: error.code || error.message }, {});
+    console.error("Store creation error:", error);
+    return NextResponse.json(
+      { error: error.code || error.message || "خطای سرور" },
+      { status: 500 }
+    );
   }
 }
 
-// check is user have already register store if yes send status of store
-export async function GET(request) {
+// 2. بررسی وضعیت ثبت‌نام فروشگاه (GET)
+export async function GET() {
   try {
-    const { userId } = getAuth(request);
+    const { userId } = await auth();
+
+    if (!userId) {
+      return NextResponse.json({ status: "not registered" });
+    }
 
     const store = await prisma.store.findFirst({
-      where: {
-        userId,
-      },
+      where: { userId },
     });
 
     if (store) {
-      return NextResponse.json({
-        status: store.status,
-      });
+      return NextResponse.json({ status: store.status });
     }
 
-    return NextResponse.json({
-      status: "not registered",
-    });
+    return NextResponse.json({ status: "not registered" });
   } catch (error) {
     console.error(error);
-
     return NextResponse.json(
       { error: error.code || error.message },
       { status: 400 }
