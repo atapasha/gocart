@@ -3,11 +3,15 @@ import { Toaster } from "react-hot-toast";
 import StoreProvider from "@/app/StoreProvider";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+
 const outfit = Outfit({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
 export const metadata = {
-  title: "GoCart. - Shop smarter",
-  description: "GoCart. - Shop smarter",
+  title: "Hony Maral. - Shop smarter",
+  description: "Hony Maral. - Shop smarter",
+  verification: {
+    google: "-AzbM6W_0ftdbRXtsBNRgSq-LTielpjhKNKB344DqCM",
+  },
 };
 
 export default function RootLayout({ children }) {
